@@ -1,6 +1,5 @@
 # CapstoneProject
 
-CapstoneProject
 My Capstone Project
 
 Is Your Rig Too Big?
