@@ -117,167 +117,79 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"map.js":[function(require,module,exports) {
-mapboxgl.accessToken = 'pk.eyJ1IjoibWFjYW5pY2EiLCJhIjoiY2p0cDkyY3J6MDI4MTN5cGx0dXhtNXpyaCJ9.3OVQDTl8MJQ2HkywQgSV5w';
-mapboxgl.Marker(); // This adds the map to your page
+})({"../../../../AppData/Roaming/npm-cache/_npx/9624/node_modules/parcel/src/builtins/bundle-url.js":[function(require,module,exports) {
+var bundleURL = null;
 
-var map = new mapboxgl.Map({
-  // container id specified in the HTML
-  "container": 'map',
-  // style URL
-  "style": 'mapbox://styles/mapbox/light-v10',
-  // initial position in [lon, lat] format
-  "center": [-77.034084, 38.909671],
-  // initial zoom
-  "zoom": 14
-});
-map.on('load', function (e) {
-  // Add the data to your map as a layer
-  map.addSource('places', {
-    "type": 'geojson',
-    "data": parks
-  });
-  buildLocationList(parks);
-});
+function getBundleURLCached() {
+  if (!bundleURL) {
+    bundleURL = getBundleURL();
+  }
 
-function buildLocationList(data) {
-  var _loop = function _loop() {
-    currentFeature = data.features[i]; // Shorten data.feature.properties to `prop` so we're not
-    // writing this long form over and over again.
+  return bundleURL;
+}
 
-    prop = currentFeature.properties; // Select the listing container in the HTML and append a div
-    // with the class 'item' for each store
+function getBundleURL() {
+  // Attempt to find the URL of the current script and use that as the base URL
+  try {
+    throw new Error();
+  } catch (err) {
+    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
 
-    listings = document.getElementById('listings');
-    listing = listings.appendChild(document.createElement('div'));
-    listing.className = 'item';
-    listing.id = 'listing-' + i; // Create a new link with the class 'title' for each store
-    // and fill it with the store address
+    if (matches) {
+      return getBaseURL(matches[0]);
+    }
+  }
 
-    link = listing.appendChild(document.createElement('a'));
-    link.href = '#';
-    link.className = 'title';
-    link.dataPosition = i;
-    link.innerHTML = prop.displayName; // Add an event listener for the links in the sidebar listing
+  return '/';
+}
 
-    link.addEventListener('click', function (e) {
-      // Update the currentFeature to the store associated with the clicked link
-      var clickedListing = data.features[this.dataPosition]; // 1. Fly to the point associated with the clicked link
+function getBaseURL(url) {
+  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
+}
 
-      flyToStore(clickedListing); // 2. Close all other popups and display popup for clicked store
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+},{}],"../../../../AppData/Roaming/npm-cache/_npx/9624/node_modules/parcel/src/builtins/css-loader.js":[function(require,module,exports) {
+var bundle = require('./bundle-url');
 
-      createPopUp(clickedListing); // 3. Highlight listing in sidebar (and remove highlight for all other listings)
+function updateLink(link) {
+  var newLink = link.cloneNode();
 
-      var activeItem = document.getElementsByClassName('active');
+  newLink.onload = function () {
+    link.remove();
+  };
 
-      if (activeItem[0]) {
-        activeItem[0].classList.remove('active');
+  newLink.href = link.href.split('?')[0] + '?' + Date.now();
+  link.parentNode.insertBefore(newLink, link.nextSibling);
+}
+
+var cssTimeout = null;
+
+function reloadCSS() {
+  if (cssTimeout) {
+    return;
+  }
+
+  cssTimeout = setTimeout(function () {
+    var links = document.querySelectorAll('link[rel="stylesheet"]');
+
+    for (var i = 0; i < links.length; i++) {
+      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
+        updateLink(links[i]);
       }
-
-      this.parentNode.classList.add('active');
-    });
-
-    function flyToStore(currentFeature) {
-      map.flyTo({
-        "center": currentFeature.geometry.coordinates,
-        "zoom": 15
-      });
-    } // Create a new div with the class 'details' for each store
-    // and fill it with the city and phone number
-
-
-    details = listing.appendChild(document.createElement('div'));
-
-    if (prop.maxRvSize) {
-      details.innerHTML += 'Max Size Limit: ' + '<span class="maxaRvSize">' + prop.maxRvSize + '</span>' + ' Feet';
     }
 
-    if (prop.phone) {
-      details.innerHTML += '<br>Phone: ' + prop.phoneFormatted;
-    }
-
-    parks.features.forEach(function (marker) {
-      // Create a div element for the marker
-      var el = document.createElement('div'); // Add a class called 'marker' to each div
-
-      el.className = 'marker';
-      el.addEventListener('click', function (e) {
-        var activeItem = document.getElementsByClassName('active'); // 1. Fly to the point
-
-        flyToStore(marker); // 2. Close all other popups and display popup for clicked store
-
-        createPopUp(marker); // 3. Highlight listing in sidebar (and remove highlight for all other listings)
-
-        e.stopPropagation();
-
-        if (activeItem[0]) {
-          activeItem[0].classList.remove('active');
-        }
-
-        var listing = document.getElementById('listing-' + i);
-        console.log(listing);
-        listing.classList.add('active');
-      }); // By default the image for your custom marker will be anchored
-      // by its center. Adjust the position accordingly
-      // Create the custom markers, set their position, and add to map
-
-      new mapboxgl.Marker(el, {
-        "offset": [0, -23]
-      }).setLngLat(marker.geometry.coordinates).addTo(map);
-    });
-  };
-
-  // Iterate through the list of parks
-  for (i = 0; i < data.features.length; i++) {
-    var currentFeature;
-    var prop;
-    var listings;
-    var listing;
-    var link;
-    var details;
-
-    _loop();
-  }
+    cssTimeout = null;
+  }, 50);
 }
 
-function createPopUp(currentFeature) {
-  var popUps = document.getElementsByClassName('mapboxgl-popup'); // Check if there is already a popup on the map and if so, remove it
+module.exports = reloadCSS;
+},{"./bundle-url":"../../../../AppData/Roaming/npm-cache/_npx/9624/node_modules/parcel/src/builtins/bundle-url.js"}],"main.css":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
 
-  if (popUps[0]) {
-    popUps[0].remove();
-  }
-
-  var popup = new mapboxgl.Popup({
-    "closeOnClick": false
-  }).setLngLat(currentFeature.geometry.coordinates).setHTML('<h3>Park Information</h3>' + '<h4>' + currentFeature.properties.displayName + '<br>Max RV Size: ' + currentFeature.properties.maxRvSize + ' feet' + '<br>Phone:' + currentFeature.properties.phoneFormatted + '</h4>').addTo(map);
-} // This will let you use the .remove() function later on
-
-
-if (!('remove' in Element.prototype)) {
-  Element.prototype.remove = function () {
-    if (this.parentNode) {
-      this.parentNode.removeChild(this);
-    }
-  };
-}
-
-function maxSize() {
-  var input = document.getElementById('RigSize').value;
-  var inputInt = parseInt(input, 10);
-  var i;
-  var maxSize = document.getElementById('listings').querySelectorAll('.maxaRvSize');
-
-  for (i = 0; i < maxSize.length; i++) {
-    var maxInt = parseInt(maxSize[i].innerHTML, 10);
-
-    if (maxInt >= inputInt || input === '' || isNaN(input)) {
-      maxSize[i].parentNode.parentNode.style.display = 'block';
-    } else {
-      maxSize[i].parentNode.parentNode.style.display = 'none';
-    }
-  }
-}
-},{}],"../../../../AppData/Roaming/npm-cache/_npx/9624/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"./montana.jpg":[["montana.13d320c6.jpg","montana.jpg"],"montana.jpg"],"./kawaii.png":[["kawaii.33b2c925.png","kawaii.png"],"kawaii.png"],"_css_loader":"../../../../AppData/Roaming/npm-cache/_npx/9624/node_modules/parcel/src/builtins/css-loader.js"}],"../../../../AppData/Roaming/npm-cache/_npx/9624/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -480,5 +392,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../../../../AppData/Roaming/npm-cache/_npx/9624/node_modules/parcel/src/builtins/hmr-runtime.js","map.js"], null)
-//# sourceMappingURL=/map.27237bf4.js.map
+},{}]},{},["../../../../AppData/Roaming/npm-cache/_npx/9624/node_modules/parcel/src/builtins/hmr-runtime.js"], null)
+//# sourceMappingURL=/main.af46ece4.js.map

@@ -1,4 +1,3 @@
-
 /* Desktops and laptops ----------- */
 @media only screen
 and (min-width : 1145px) {
@@ -86,7 +85,7 @@ and (min-width : 1145px) {
       left: 0;
       right: 0;
       bottom: 0;
-      background-image: url(montana.jpg);
+      background-image: url(/montana.13d320c6.jpg);
       background-repeat: no-repeat;
       background-size: cover;
 
@@ -338,7 +337,7 @@ and (min-width : 1145px) {
     cursor: pointer;
     height: 56px;
     width: 56px;
-    background-image: url(kawaii.png);
+    background-image: url(/kawaii.33b2c925.png);
     background-size: contain;
     background-color: rgba(0, 0, 0, 0);
   }
@@ -429,7 +428,7 @@ and (max-width : 1145px) {
         left: 0;
         right: 0;
         bottom: 0;
-        background-image: url(montana.jpg);
+        background-image: url(/montana.13d320c6.jpg);
         background-repeat: no-repeat;
         background-size: cover;
 
@@ -683,7 +682,7 @@ and (max-width : 1145px) {
       cursor: pointer;
       height: 56px;
       width: 56px;
-      background-image: url(kawaii.png);
+      background-image: url(/kawaii.33b2c925.png);
       background-size: contain;
       background-color: rgba(0, 0, 0, 0);
     }
@@ -777,7 +776,7 @@ and (max-width : 922px) {
       left: 0;
       right: 0;
       bottom: 0;
-      background-image: url(montana.jpg);
+      background-image: url(/montana.13d320c6.jpg);
       background-repeat: no-repeat;
       background-size: cover;
 
@@ -1034,7 +1033,7 @@ and (max-width : 922px) {
     cursor: pointer;
     height: 56px;
     width: 56px;
-    background-image: url(kawaii.png);
+    background-image: url(/kawaii.33b2c925.png);
     background-size: contain;
     background-color: rgba(0, 0, 0, 0);
   }
@@ -1046,3 +1045,6 @@ and (max-width : 922px) {
 and (min-width : 200px) {
 /* Styles */
 }
+
+
+/*# sourceMappingURL=/main.af46ece4.css.map */

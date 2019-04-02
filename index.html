@@ -1,23 +1,71 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Is Your Rig Too Big?</title>
-    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.js'></script>
-    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.css' rel='stylesheet' />
-    <script type="text/javascript" src="sweet-greens.geojson"></script>
-    <link rel="stylesheet" href="map.css">
-  </head>
-  <body>
 
-    <div class='sidebar'>
-      <div class='heading'>
-        <h1>Our locations</h1>
-      </div>
-      <div id='listings' class='listings'></div>
+<head>
+  <meta charset="utf-8">
+  <title>Is Your Rig Too Big?</title>
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.js'></script>
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.css' rel='stylesheet' />
+  <script type="text/javascript" src="parks.geojson"></script>
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700' rel='stylesheet'>
+  <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+  <header>
+    <p><strong>Rig to Big</strong></p>
+  </header>
+
+  <div class="aboutWrapper">
+    <div class="aboutWording">
+      <h1 id="RigContentHeader"><strong>Is your Rig too Big?</strong></h1>
+      <p id="RigContentBody">Each national park has size restrictions on their RV campsites.
+        The average permitted size is 27 feet, but there are sites that range
+        anywhere from 20 to 40 feet. However there are fewer large sites, so you'll
+        often need to make reservations for them early.
+
+        Enter your rig size below to find a matching park.
+      </p>
+      <form class="" action="index.html" method="post">
+        <input id="RigSize" type="text" name="RigSize" value="">
+        <input type="button" name="findPark" value="Find Parks" onclick="maxSize()">
+        <script>
+          function maxSize() {
+            var input = document.getElementById('RigSize').value;
+            var inputInt = parseInt(input, 10);
+
+            var i;
+            var maxSize = document.getElementById('listings').querySelectorAll('.maxaRvSize');
+
+            for (i = 0; i < maxSize.length; i++) {
+              var maxInt = parseInt(maxSize[i].innerHTML, 10);
+
+              if (maxInt >= inputInt || input === '' || isNaN(input)) {
+                maxSize[i].parentNode.parentNode.style.display = 'block';
+              }
+              else {
+                maxSize[i].parentNode.parentNode.style.display = 'none';
+              }
+            }
+          }
+        </script>
+      </form>
     </div>
 
-    <div id='map' class='map pad2'></div>
-    <script type="text/javascript" src="map.js"></script>
-  </body>
+    <div class="mapWrapper">
+      <div class='sidebar'>
+        <div class='heading'>
+          <h1><strong>Park Locations</strong></h1>
+        </div>
+        <div id='listings' class='listings'></div>
+      </div>
+      <div id='map' class='map pad2'></div>
+      <script type="text/javascript" src="map.js"></script>
+    </div>
+  </div>
+  <footer>
+    <p>Is your Rig too Big &copy; </p>
+  </footer>
+</body>
+
 </html>
