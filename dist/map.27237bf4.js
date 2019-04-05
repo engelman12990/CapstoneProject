@@ -123,38 +123,46 @@ mapboxgl.Marker(); // This adds the map to your page
 
 var map = new mapboxgl.Map({
   // container id specified in the HTML
-  "container": 'map',
+  'container': 'map',
   // style URL
-  "style": 'mapbox://styles/mapbox/light-v10',
+  'style': 'mapbox://styles/mapbox/light-v10',
   // initial position in [lon, lat] format
-  "center": [-77.034084, 38.909671],
+  'center': [-77.034084, 38.909671],
   // initial zoom
-  "zoom": 14
+  'zoom': 2.75
 });
 map.on('load', function (e) {
   // Add the data to your map as a layer
   map.addSource('places', {
-    "type": 'geojson',
-    "data": parks
+    'type': 'geojson',
+    'data': parks
   });
   buildLocationList(parks);
 });
 
+function flyToStore(currentFeature) {
+  map.flyTo({
+    'center': currentFeature.geometry.coordinates,
+    'zoom': 6
+  });
+}
+
 function buildLocationList(data) {
-  var _loop = function _loop() {
-    currentFeature = data.features[i]; // Shorten data.feature.properties to `prop` so we're not
+  // Select the listing container in the HTML and append a div
+  // with the class 'item' for each store
+  var listings = document.getElementById('listings'); // Iterate through the list of parks
+
+  for (i = 0; i < data.features.length; i++) {
+    var currentFeature = data.features[i]; // Shorten data.feature.properties to `prop` so we're not
     // writing this long form over and over again.
 
-    prop = currentFeature.properties; // Select the listing container in the HTML and append a div
-    // with the class 'item' for each store
-
-    listings = document.getElementById('listings');
-    listing = listings.appendChild(document.createElement('div'));
+    var prop = currentFeature.properties;
+    var listing = listings.appendChild(document.createElement('div'));
     listing.className = 'item';
     listing.id = 'listing-' + i; // Create a new link with the class 'title' for each store
     // and fill it with the store address
 
-    link = listing.appendChild(document.createElement('a'));
+    var link = listing.appendChild(document.createElement('a'));
     link.href = '#';
     link.className = 'title';
     link.dataPosition = i;
@@ -174,19 +182,13 @@ function buildLocationList(data) {
         activeItem[0].classList.remove('active');
       }
 
-      this.parentNode.classList.add('active');
-    });
-
-    function flyToStore(currentFeature) {
-      map.flyTo({
-        "center": currentFeature.geometry.coordinates,
-        "zoom": 15
-      });
-    } // Create a new div with the class 'details' for each store
+      if (this.parentNode) {
+        this.parentNode.classList.add('active');
+      }
+    }); // Create a new div with the class 'details' for each store
     // and fill it with the city and phone number
 
-
-    details = listing.appendChild(document.createElement('div'));
+    var details = listing.appendChild(document.createElement('div'));
 
     if (prop.maxRvSize) {
       details.innerHTML += 'Max Size Limit: ' + '<span class="maxaRvSize">' + prop.maxRvSize + '</span>' + ' Feet';
@@ -215,28 +217,18 @@ function buildLocationList(data) {
         }
 
         var listing = document.getElementById('listing-' + i);
-        console.log(listing);
-        listing.classList.add('active');
+
+        if (listing) {
+          listing.classList.add('active');
+        }
       }); // By default the image for your custom marker will be anchored
       // by its center. Adjust the position accordingly
       // Create the custom markers, set their position, and add to map
 
       new mapboxgl.Marker(el, {
-        "offset": [0, -23]
+        'offset': [0, -23]
       }).setLngLat(marker.geometry.coordinates).addTo(map);
     });
-  };
-
-  // Iterate through the list of parks
-  for (i = 0; i < data.features.length; i++) {
-    var currentFeature;
-    var prop;
-    var listings;
-    var listing;
-    var link;
-    var details;
-
-    _loop();
   }
 }
 
@@ -248,7 +240,7 @@ function createPopUp(currentFeature) {
   }
 
   var popup = new mapboxgl.Popup({
-    "closeOnClick": false
+    'closeOnClick': false
   }).setLngLat(currentFeature.geometry.coordinates).setHTML('<h3>Park Information</h3>' + '<h4>' + currentFeature.properties.displayName + '<br>Max RV Size: ' + currentFeature.properties.maxRvSize + ' feet' + '<br>Phone:' + currentFeature.properties.phoneFormatted + '</h4>').addTo(map);
 } // This will let you use the .remove() function later on
 
@@ -277,7 +269,18 @@ function maxSize() {
     }
   }
 }
-},{}],"../../../../AppData/Roaming/npm-cache/_npx/9624/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+
+var searchInput = document.getElementById('RigSize');
+searchInput.addEventListener('keydown', function (event) {
+  if (event.keyCode === 13) {
+    event.preventDefault();
+  }
+});
+var findPark = document.getElementById('findPark');
+findPark.addEventListener('click', function (event) {
+  maxSize();
+});
+},{}],"../../../../AppData/Roaming/npm-cache/_npx/1192/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -305,7 +308,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63227" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62005" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -480,5 +483,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../../../../AppData/Roaming/npm-cache/_npx/9624/node_modules/parcel/src/builtins/hmr-runtime.js","map.js"], null)
+},{}]},{},["../../../../AppData/Roaming/npm-cache/_npx/1192/node_modules/parcel/src/builtins/hmr-runtime.js","map.js"], null)
 //# sourceMappingURL=/map.27237bf4.js.map

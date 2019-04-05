@@ -21,25 +21,22 @@
       <h1 id="RigContentHeader"><strong>Is your Rig too Big?</strong></h1>
       <p id="RigContentBody">Each national park has size restrictions on their RV campsites.
         The average permitted size is 27 feet, but there are sites that range
-        anywhere from 20 to 40 feet. However there are fewer large sites, so you'll
+        anywhere from 20 to 40 feet. However, there are fewer large sites, so you'll
         often need to make reservations for them early.
 
         Enter your rig size below to find a matching park.
       </p>
       <form class="" action="index.html" method="post">
         <input id="RigSize" type="text" name="RigSize" value="">
-        <input type="button" name="findPark" value="Find Parks" onclick="maxSize()">
-        <script>
+        <input id="findPark" type="button" name="findPark" value="Find Parks">
+        <!-- <script>
           function maxSize() {
             var input = document.getElementById('RigSize').value;
             var inputInt = parseInt(input, 10);
-
             var i;
             var maxSize = document.getElementById('listings').querySelectorAll('.maxaRvSize');
-
             for (i = 0; i < maxSize.length; i++) {
               var maxInt = parseInt(maxSize[i].innerHTML, 10);
-
               if (maxInt >= inputInt || input === '' || isNaN(input)) {
                 maxSize[i].parentNode.parentNode.style.display = 'block';
               }
@@ -48,7 +45,7 @@
               }
             }
           }
-        </script>
+        </script> -->
       </form>
     </div>
 

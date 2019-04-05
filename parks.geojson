@@ -8,132 +8,169 @@ var parks = {
         "coordinates": [
           -68.2733,
           44.3386
-
         ]
       },
       "properties": {
         "phoneFormatted": "(518) 885-3639",
         "phone": "5188853639",
-        "displayName" : "Acadia National Park",
+        "displayName": "Acadia National Park",
         "city": "Bar Harbor",
         "country": "United States",
         "state": "ME",
-        "maxRvSize" : "35"
+        "maxRvSize": "35"
       }
     },
     {
-       "type": "Feature",
-       "geometry": {
-         "type": "Point",
-         "coordinates": [
-           -109.5925,
-           38.7331
-         ]
-       },
-       "properties": {
-         "phoneFormatted": "(435) 719-2299",
-         "phone": "4357192299",
-         "displayName": "Arches National Park",
-         "city": "Moab",
-         "country": "United States",
-         "state": "UT",
-         "maxRvSize": "40"
-       }
-    },
-    {
-     "type": "Feature",
-     "geometry": {
-       "type": "Point",
-       "coordinates": [
-         -109.5910,
-         38.7804
-       ]
-     },
-     "properties": {
-       "phoneFormatted": "(435) 719-2299",
-       "phone": "4357192299",
-       "displayName": "Devils Garden Campground",
-       "city": "Moab",
-       "country": "United States",
-       "state": "UT",
-       "maxRvSize": "40"
-     }
-   },
-   {
-   "type": "Feature",
-   "geometry": {
-     "type": "Point",
-     "coordinates": [
-       -109.5759,
-       38.6008
-     ]
-   },
-   "properties": {
-     "phoneFormatted": "(435) 259-4469",
-     "phone": "4352594469",
-     "displayName": "Moab Valley RV Resort",
-     "city": "Moab",
-     "country": "United States",
-     "state": "UT",
-     "maxRvSize": "44"
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.5925,
+          38.7331
+        ]
+      },
+      "properties": {
+        "phoneFormatted": "(435) 719-2299",
+        "phone": "4357192299",
+        "displayName": "Arches National Park",
+        "city": "Moab",
+        "country": "United States",
+        "state": "UT",
+        "maxRvSize": "40"
       }
     },
     {
-   "type": "Feature",
-   "geometry": {
-     "type": "Point",
-     "coordinates": [
-       -102.3397,
-       43.8554
-     ]
-   },
-   "properties": {
-     "phoneFormatted": "(605) 433-5361",
-     "phone": "6054335361",
-     "displayName": "Badlands National Park",
-     "city": "Interior",
-     "country": "United States",
-     "state": "SD",
-     "maxRvSize": "50"
-   }
- },
- {
-     "type": "Feature",
-     "geometry": {
-       "type": "Point",
-       "coordinates": [
-         -112.1871,
-         37.5930
-       ]
-     },
-     "properties": {
-       "phoneFormatted": "(435) 834-5322",
-       "phone": "4358345322",
-       "displayName": "Bryce Canyon National Park",
-       "city": "Bryce",
-       "country": "United States",
-       "state": "UT",
-       "maxRvSize": "40"
-     }
-   },
-   {
-  "type": "Feature",
-  "geometry": {
-    "type": "Point",
-    "coordinates": [
-      -117.0794,
-      36.5054
-    ]
-  },
-  "properties": {
-    "phoneFormatted": "(760) 786-3200",
-    "phone": "7607863200",
-    "displayName": "Death Valley National Park",
-    "city": "Death Valley",
-    "country": "United States",
-    "state": "CA",
-    "maxRvSize": "40"
-  }
-}
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.5910,
+          38.7804
+        ]
+      },
+      "properties": {
+        "phoneFormatted": "(435) 719-2299",
+        "phone": "4357192299",
+        "displayName": "Devils Garden Campground",
+        "city": "Moab",
+        "country": "United States",
+        "state": "UT",
+        "maxRvSize": "40"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.5759,
+          38.6008
+        ]
+      },
+      "properties": {
+        "phoneFormatted": "(435) 259-4469",
+        "phone": "4352594469",
+        "displayName": "Moab Valley RV Resort",
+        "city": "Moab",
+        "country": "United States",
+        "state": "UT",
+        "maxRvSize": "44"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -102.3397,
+          43.8554
+        ]
+      },
+      "properties": {
+        "phoneFormatted": "(605) 433-5361",
+        "phone": "6054335361",
+        "displayName": "Badlands National Park",
+        "city": "Interior",
+        "country": "United States",
+        "state": "SD",
+        "maxRvSize": "50"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -112.1871,
+          37.5930
+        ]
+      },
+      "properties": {
+        "phoneFormatted": "(435) 834-5322",
+        "phone": "4358345322",
+        "displayName": "Bryce Canyon National Park",
+        "city": "Bryce",
+        "country": "United States",
+        "state": "UT",
+        "maxRvSize": "40"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -117.0794,
+          36.5054
+        ]
+      },
+      "properties": {
+        "phoneFormatted": "(760) 786-3200",
+        "phone": "7607863200",
+        "displayName": "Death Valley National Park",
+        "city": "Death Valley",
+        "country": "United States",
+        "state": "CA",
+        "maxRvSize": "40"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -117.0700,
+          36.5054
+        ]
+      },
+      "properties": {
+        "phoneFormatted": "(760) 786-3200",
+        "phone": "7607863200",
+        "displayName": "fasdfasdf National Park",
+        "city": "Death Valley",
+        "country": "United States",
+        "state": "CA",
+        "maxRvSize": "40"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -117.0700,
+          36.5054
+        ]
+      },
+      "properties": {
+        "phoneFormatted": "(760) 786-3200",
+        "phone": "7607863200",
+        "displayName": "fasdfasdf National Park",
+        "city": "Death Valley",
+        "country": "United States",
+        "state": "CA",
+        "maxRvSize": "40"
+      }
+    }
   ]
 }
