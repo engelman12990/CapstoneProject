@@ -139,17 +139,55 @@ var parks = {
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -117.0700,
+          -80.8987,
+          25.2866
+        ]
+      },
+      "properties": {
+        "phoneFormatted": "(305) 242-7700",
+        "phone": "3052427700",
+        "displayName": "Everglades National Park",
+        "city": "Homestead",
+        "country": "United States",
+        "state": "FL",
+        "maxRvSize": "45"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -112.1130,
           36.5054
         ]
       },
       "properties": {
-        "phoneFormatted": "(760) 786-3200",
-        "phone": "7607863200",
-        "displayName": "fasdfasdf National Park",
-        "city": "Death Valley",
+        "phoneFormatted": "(928) 638-7888",
+        "phone": "9286387888",
+        "displayName": "Grand Canyon National Park",
+        "city": "Grand Canyon",
         "country": "United States",
-        "state": "CA",
+        "state": "AZ",
+        "maxRvSize": "47"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.4895,
+          35.6532
+        ]
+      },
+      "properties": {
+        "phoneFormatted": "(865) 436-1200",
+        "phone": "8654361200",
+        "displayName": "Great Smoky Mountains National Park",
+        "city": "Gatlinburg",
+        "country": "United States",
+        "state": "TN",
         "maxRvSize": "40"
       }
     },
@@ -158,17 +196,74 @@ var parks = {
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -117.0700,
-          36.5054
+          -115.9010,
+          33.8734
         ]
       },
       "properties": {
-        "phoneFormatted": "(760) 786-3200",
-        "phone": "7607863200",
-        "displayName": "fasdfasdf National Park",
-        "city": "Death Valley",
+        "phoneFormatted": "(760) 367-5500",
+        "phone": "7603675500",
+        "displayName": "Joshua Tree National Park",
+        "city": "Twentynine Palms",
         "country": "United States",
         "state": "CA",
+        "maxRvSize": "35"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -124.0046,
+          41.2132
+        ]
+      },
+      "properties": {
+        "phoneFormatted": "(707) 464-6101",
+        "phone": "7074646101",
+        "displayName": "Redwoods National Park",
+        "city": "Crescent City",
+        "country": "United States",
+        "state": "CA",
+        "maxRvSize": "36"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -119.5383,
+          37.8651
+        ]
+      },
+      "properties": {
+        "phoneFormatted": "(209) 372-0200",
+        "phone": "2093720200",
+        "displayName": "Yosemite National Park",
+        "city": "Yosemite National Park",
+        "country": "United States",
+        "state": "CA",
+        "maxRvSize": "35"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.5885,
+          44.4280
+        ]
+      },
+      "properties": {
+        "phoneFormatted": "(307) 344-7381",
+        "phone": "3073447381",
+        "displayName": "Yellowstone National Park",
+        "city": "Yellowstone National Park",
+        "country": "United States",
+        "state": "WY",
         "maxRvSize": "40"
       }
     }
