@@ -7,12 +7,12 @@ var map = new mapboxgl.Map({
     // style URL
     'style': 'mapbox://styles/mapbox/light-v10',
     // initial position in [lon, lat] format
-    'center': [ -77.034084, 38.909671 ],
+    'center': [ -98.5, 39.50 ],
     // initial zoom
-    'zoom': 2.75
+    'zoom': 2.00
 });
 
-
+// when the map loads, add the source of parks on the map & the sidebar
 map.on('load', function(e){
     // Add the data to your map as a layer
     map.addSource('places', {
@@ -22,7 +22,7 @@ map.on('load', function(e){
     buildLocationList(parks);
 });
 
-
+// currentFeature= placeholder for something we will pass in later
 function flyToStore(currentFeature){
     map.flyTo({
         'center': currentFeature.geometry.coordinates,
@@ -32,7 +32,7 @@ function flyToStore(currentFeature){
 
 function buildLocationList(data){
     // Select the listing container in the HTML and append a div
-    // with the class 'item' for each store
+    // with the class 'item' for each park
     var listings = document.getElementById('listings');
 
    
@@ -50,22 +50,25 @@ function buildLocationList(data){
         listing.className = 'item';
         listing.id = 'listing-' + i;
 
-        // Create a new link with the class 'title' for each store
-        // and fill it with the store address
+        // Create a new link with the class 'title' for each park
+        // and fill it with the park info
+        // creates an a tag and puts it inside the listing div
         var link = listing.appendChild(document.createElement('a'));
 
+        // the # creates a link that goes nowhere - just for the map to use
         link.href = '#';
         link.className = 'title';
         link.dataPosition = i;
+        // inside of the a tag will contain the display name
         link.innerHTML = prop.displayName;
         // Add an event listener for the links in the sidebar listing
         link.addEventListener('click', function(e){
-            // Update the currentFeature to the store associated with the clicked link
+            // Update the currentFeature to the park associated with the clicked link
             var clickedListing = data.features[this.dataPosition];
             // 1. Fly to the point associated with the clicked link
 
             flyToStore(clickedListing);
-            // 2. Close all other popups and display popup for clicked store
+            // 2. Close all other popups and display popup for clicked park
             createPopUp(clickedListing);
             // 3. Highlight listing in sidebar (and remove highlight for all other listings)
             var activeItem = document.getElementsByClassName('active');
@@ -78,12 +81,16 @@ function buildLocationList(data){
             }
         });
 
-        // Create a new div with the class 'details' for each store
+        // Create a new div with the class 'details' for each park
         // and fill it with the city and phone number
         var details = listing.appendChild(document.createElement('div'));
+        // populating the div with info about the park
 
+        if(prop.city){
+            details.innerHTML += prop.city + ', ' + prop.state;
+        }
         if(prop.maxRvSize){
-            details.innerHTML += 'Max Size Limit: ' + '<span class="maxaRvSize">' + prop.maxRvSize + '</span>' + ' Feet';
+            details.innerHTML += '<br>Max Size Limit: ' + '<span class="maxaRvSize">' + prop.maxRvSize + '</span>' + ' Feet';
         }
         if(prop.phone){
             details.innerHTML += '<br>Phone: ' + prop.phoneFormatted;
@@ -100,11 +107,12 @@ function buildLocationList(data){
                 // 1. Fly to the point
 
                 flyToStore(marker);
-                // 2. Close all other popups and display popup for clicked store
+                // 2. Close all other popups and display popup for clicked park
                 createPopUp(marker);
                 // 3. Highlight listing in sidebar (and remove highlight for all other listings)
                 e.stopPropagation();
                 if(activeItem[0]){
+                    // if there is one that is already active, it will remove it as being active
                     activeItem[0].classList.remove('active');
                 }
                 var listing = document.getElementById('listing-' + i);
@@ -114,8 +122,8 @@ function buildLocationList(data){
                     listing.classList.add('active');
                 }
             });
-            // By default the image for your custom marker will be anchored
-            // by its center. Adjust the position accordingly
+            // By default the image for the custom marker will be anchored
+            // by its center.
             // Create the custom markers, set their position, and add to map
             new mapboxgl.Marker(el, { 'offset': [ 0, -23 ] })
                 .setLngLat(marker.geometry.coordinates)
@@ -131,11 +139,15 @@ function createPopUp(currentFeature){
     if(popUps[0]){
         popUps[0].remove();
     }
-
-    var popup = new mapboxgl.Popup({ 'closeOnClick': false })
+    // mapboxg1.Popup = mapbox function to create a pop up
+    var popup = new mapboxgl.Popup({ 'closeOnClick': true })
         .setLngLat(currentFeature.geometry.coordinates)
         .setHTML('<h3>Park Information</h3>' +
-      '<h4>' + currentFeature.properties.displayName + '<br>Max RV Size: ' + currentFeature.properties.maxRvSize + ' feet' + '<br>Phone:' + currentFeature.properties.phoneFormatted + '</h4>')
+      '<h4>' + currentFeature.properties.displayName + '<br>' +
+      currentFeature.properties.city + ', ' +
+      currentFeature.properties.state + '<br>Max RV Size: ' +
+      currentFeature.properties.maxRvSize + ' feet' + '<br>Phone:' +
+      currentFeature.properties.phoneFormatted + '</h4>')
         .addTo(map);
 }
 
@@ -153,9 +165,13 @@ function maxSize(){
     var inputInt = parseInt(input, 10);
 
     var i;
+    // maxSize is grabbing all the elements inside of the ID 'listings' and then grabbing the spans that
+    // have a class of maxaRvSize which should hold all the max RV sizes for the parks, sorting the RV sizes
+    // future feature - sort marker icon
     var maxSize = document.getElementById('listings').querySelectorAll('.maxaRvSize');
 
     for(i = 0; i < maxSize.length; i++){
+        // to evaluate nums instead of strings, parseInt
         var maxInt = parseInt(maxSize[i].innerHTML, 10);
 
         if(maxInt >= inputInt || input === '' || isNaN(input)){
@@ -176,6 +192,7 @@ searchInput.addEventListener('keydown', function(event){
 });
 
 var findPark = document.getElementById('findPark');
+// when you click the button, it runs the maxSize function
 
 findPark.addEventListener('click', function(event){
     maxSize();
