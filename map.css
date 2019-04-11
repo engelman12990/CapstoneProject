@@ -232,6 +232,7 @@ and (min-width : 1145px) {
     border-bottom: 1px solid #eee;
     padding: 10px;
     text-decoration: none;
+    
   }
 
   .listings .item:last-child { border-bottom: none; }
@@ -745,6 +746,7 @@ and (max-width : 922px) {
   }
 
   footer {
+   
     background-color: #006E6D;
     color: #FFF;
     position: absolute;
@@ -755,6 +757,8 @@ and (max-width : 922px) {
     height: 50px;
     width: 100%;
     border-top: 2px solid #FFF;
+    
+}
 
   }
 
